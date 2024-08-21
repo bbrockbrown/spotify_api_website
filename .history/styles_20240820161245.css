@@ -53,6 +53,6 @@ body {
     transition: opacity 0.5s;
 }
 
-[class*="card"]:hover .card-img {
+[class*="card"]:hover, .card-img {
     opacity: 1;
 }
