@@ -56,11 +56,6 @@ body {
   min-width: min-content;
 }
 
-.navbar-nav .nav-link {
-  color: white !important;
-  font-family: 'Spotify-font', sans-serif;
-}
-
 .container {
   height: 100%;
   width: 100%;

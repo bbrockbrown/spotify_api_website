@@ -12,7 +12,7 @@
 <body>
 
 <!--    Navbar    -->
-    <nav class="navbar navbar-expand-lg" style="background-color: var(--body-Color)">
+    <nav class="navbar navbar-expand-lg border-bottom border-body" style="background-color: var(--body-Color)">
         <div class="container">
           <a class="navbar-brand" href="#"><img src="./images/spotify_logo.png" alt="Spotify Logo" width="30" height="30" id="spotify-logo"></a>
           <div class="header-textbox" style="width:max-content"> <h2 id="header-text">stats.fm (not)</h2></div>
@@ -48,47 +48,38 @@
             </form>
           </div>
         </div>
-    </nav>
+      </nav>
 
 
 <!--    Tracking Card Options (Song, Artist, Album)     -->
-    <div class="row row-cols-1 row-cols-md-3 g-4 m-auto border-none" id="card-container" style="background-color: var(--body-Color)">
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-auto">
         <div class="col">
-            <a href="./song-tracking-page/index.html" class="text-decoration-none"> <!-- Link to track page -->
-                <div class="card h-100">
-                    <img src="./images/tracks_card_img.png" class="card-img-top card-img" alt="Assortment of Spotify tracks">
-                    <div class="card-body">
-                        <h5 class="card-title">Track songs</h5>
-                        <p class="card-text"> See how popular your favorite songs are across the globe and view their respective song 'readings'!</p>
-                    </div>
+            <div class="card h-100">
+                <img src="./images/tracks_card_img.png" class="card-img-top card-img" alt="Assortment of Spotify tracks">
+                <div class="card-body">
+                    <h5 class="card-title">Track songs</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 </div>
-            </a>
+            </div>
         </div>
-
         <div class="col">
-            <a href="./artist-tracking-page/index.html" class="text-decoration-none"> <!-- Link to artist page -->
-                <div class="card h-100">
-                    <img src="./images/artists_card_img.png" class="card-img-top card-img" alt="Artists for Spotify">
-                    <div class="card-body">
-                        <h5 class="card-title">Track artists</h5>
-                        <p class="card-text"> View any artist's discography, top tracks to date, and related artists to help expand your music pallette!</p>
-                    </div>
+            <div class="card h-100">
+                <img src="./images/artists_card_img.png" class="card-img-top card-img" alt="Artists for Spotify">
+                <div class="card-body">
+                    <h5 class="card-title">Track artists</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 </div>
-            </a>
+            </div>
         </div>
-
         <div class="col">
-            <a href="./album-tracking-page/index.html" class="text-decoration-none">
-                <div class="card h-100">
-                    <img src="./images/ablums_card_img.png" class="card-img-top card-img" alt="Assortment of Spotify albums">
-                    <div class="card-body">
-                        <h5 class="card-title">Track albums</h5>
-                        <p class="card-text"> View all albums and their related tracks, as well as any new releases that may peak your interest!</p>
-                    </div>
+            <div class="card h-100">
+                <img src="./images/ablums_card_img.png" class="card-img-top card-img" alt="Assortment of Spotify albums">
+                <div class="card-body">
+                    <h5 class="card-title">Track albums</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 </div>
-            </a>
+            </div>
         </div>
-
     </div>
 </body>
 </html>

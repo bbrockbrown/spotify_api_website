@@ -56,9 +56,8 @@ body {
   min-width: min-content;
 }
 
-.navbar-nav .nav-link {
+.navbar-collapse {
   color: white !important;
-  font-family: 'Spotify-font', sans-serif;
 }
 
 .container {

@@ -7,8 +7,7 @@
   src: url('./fonts/circular-std-2.ttf');
 }
 body {
-  background-color: var(--body-Color);  
-  margin-top: 40px; /* This margin just makes the text easier to read. You can remove it if you want since it can mess with your other styles. */
+    margin-top: 40px; /* This margin just makes the text easier to read. You can remove it if you want since it can mess with your other styles. */
   }
   
   body::before {
@@ -56,11 +55,6 @@ body {
   min-width: min-content;
 }
 
-.navbar-nav .nav-link {
-  color: white !important;
-  font-family: 'Spotify-font', sans-serif;
-}
-
 .container {
   height: 100%;
   width: 100%;
@@ -77,9 +71,8 @@ body {
   margin: 0;
 }
 
-.card {
-  box-shadow: 7px 7px 10px rgb(255, 255, 255, 0.25);
-  transition: box-shadow 0.5s ease; 
+#card-container {
+  border: none;
 }
 
 .card-img-top {
@@ -88,15 +81,11 @@ body {
     object-fit: cover; /* Ensure the image covers the container without distortion */
 }
 
-.card-img {
+[class*="card-img"] {
     opacity: 0.7;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s;
 }
 
-.card:hover .card-img {
-  opacity: 1;
-}
-
-.card:hover {
-  box-shadow: none;
+[class*="card"]:hover .card-img {
+    opacity: 1;
 }

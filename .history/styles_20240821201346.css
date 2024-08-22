@@ -52,13 +52,9 @@ body {
   }
 
 .navbar {
+  color: white;
   padding: 5px 0 5px 0 !important;
   min-width: min-content;
-}
-
-.navbar-nav .nav-link {
-  color: white !important;
-  font-family: 'Spotify-font', sans-serif;
 }
 
 .container {

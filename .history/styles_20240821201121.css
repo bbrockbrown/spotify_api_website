@@ -56,11 +56,6 @@ body {
   min-width: min-content;
 }
 
-.navbar-nav .nav-link {
-  color: white !important;
-  font-family: 'Spotify-font', sans-serif;
-}
-
 .container {
   height: 100%;
   width: 100%;
@@ -79,7 +74,6 @@ body {
 
 .card {
   box-shadow: 7px 7px 10px rgb(255, 255, 255, 0.25);
-  transition: box-shadow 0.5s ease; 
 }
 
 .card-img-top {
@@ -95,8 +89,5 @@ body {
 
 .card:hover .card-img {
   opacity: 1;
-}
-
-.card:hover {
   box-shadow: none;
 }
