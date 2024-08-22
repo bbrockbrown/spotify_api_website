@@ -46,25 +46,9 @@ body {
     }
   }
 
-.navbar {
-  padding: 5px 0 5px 0 !important;
-  min-width: min-content;
-}
-
-.container {
-  height: 100%;
-  width: 100%;
-}
-
-#spotify-logo {
-  height: 50px;
-  width: 50px;
-}
-
-#header-text {
+.header-logo-text {
   font-family: 'Spotify-font', sans-serif;
   color: white;
-  margin: 0;
 }
 
 .card-img-top {

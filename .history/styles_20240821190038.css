@@ -46,11 +46,6 @@ body {
     }
   }
 
-.navbar {
-  padding: 5px 0 5px 0 !important;
-  min-width: min-content;
-}
-
 .container {
   height: 100%;
   width: 100%;

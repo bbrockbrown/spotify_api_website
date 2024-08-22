@@ -1,7 +1,3 @@
-@font-face {
-  font-family: 'Spotify-font';
-  src: url('./fonts/circular-std-2.ttf');
-}
 body {
     margin-top: 40px; /* This margin just makes the text easier to read. You can remove it if you want since it can mess with your other styles. */
   }
@@ -46,25 +42,9 @@ body {
     }
   }
 
-.navbar {
-  padding: 5px 0 5px 0 !important;
-  min-width: min-content;
-}
-
-.container {
-  height: 100%;
-  width: 100%;
-}
-
-#spotify-logo {
-  height: 50px;
-  width: 50px;
-}
-
-#header-text {
-  font-family: 'Spotify-font', sans-serif;
+.header-logo-text {
+  font-family: 'Circular-black', sans-serif;
   color: white;
-  margin: 0;
 }
 
 .card-img-top {
