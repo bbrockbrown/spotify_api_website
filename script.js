@@ -32,15 +32,15 @@ const APIController = (function() {
         return data.categories.items;
     }
 
-    // Returns endpoint of first track found given a trackName & relevant track details (artist, length, etc)
+    // Returns endpoint of first 10 track found given a trackName & relevant track details (artist, length, etc)
     const _searchTrack = async (token, trackName) => {
-        const result = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(trackName)}&type=track`, {
+        const result = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(trackName)}&type=track&limit=10`, {
             method: 'GET',
             headers: { 'Authorization': 'Bearer ' + token }
         });
 
         const data = await result.json();
-        return data.tracks.items[0]; 
+        return data.tracks.items; 
     }
 
     // Returns track features e.g. danceability, energy, valence, etc.
