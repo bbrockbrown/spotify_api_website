@@ -20,6 +20,7 @@ const APIController = (function() {
         return data.access_token;
     }
     
+    // Returns all different (valid) genres on Spotify
     const _getGenres = async (token) => {
 
         const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
@@ -31,19 +32,29 @@ const APIController = (function() {
         return data.categories.items;
     }
 
-    const _getPlaylistByGenre = async (token, genreId) => {
-
-        const limit = 10;
-        
-        const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`, {
+    // Returns endpoint of first track found given a trackName & relevant track details (artist, length, etc)
+    const _searchTrack = async (token, trackName) => {
+        const result = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(trackName)}&type=track`, {
             method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
+            headers: { 'Authorization': 'Bearer ' + token }
         });
 
         const data = await result.json();
-        return data.playlists.items;
+        return data.tracks.items[0]; 
     }
 
+    // Returns track features e.g. danceability, energy, valence, etc.
+    const _getTrackAudioFeatures = async (token, trackId) => {
+        const result = await fetch(`https://api.spotify.com/v1/audio-features/${trackId}`, {
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+
+        const data = await result.json();
+        return data;
+    }
+
+    // Returns the names of tracks given by endpoints of multiple tracks (separated by comma)
     const _getTracks = async (token, tracksEndPoint) => {
 
         const limit = 10;
@@ -57,6 +68,7 @@ const APIController = (function() {
         return data.items;
     }
 
+    // Returns track name given a track endpoint
     const _getTrack = async (token, trackEndPoint) => {
 
         const result = await fetch(`${trackEndPoint}`, {
@@ -75,8 +87,11 @@ const APIController = (function() {
         getGenres(token) {
             return _getGenres(token);
         },
-        getPlaylistByGenre(token, genreId) {
-            return _getPlaylistByGenre(token, genreId);
+        searchTrack(token, trackName) {
+            return _searchTrack(token, trackName);
+        },
+        getTrackAudioFeatures(token, trackId) {
+            return _getTrackAudioFeatures(token, trackId);
         },
         getTracks(token, tracksEndPoint) {
             return _getTracks(token, tracksEndPoint);
@@ -87,14 +102,7 @@ const APIController = (function() {
     }
 })(); // We add parens here b/c IIFE function (immediately invoked func. expression) 
 
-async function exampleUsage() {
-    const token = await APIController.getToken();
-    const genres = await APIController.getGenres(token);
-    console.log(genres);
-}
-exampleUsage();
-
-
+export default APIController;
 
 
 
