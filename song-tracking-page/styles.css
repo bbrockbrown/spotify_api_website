@@ -137,3 +137,21 @@ body {
   flex-wrap: nowrap;
   min-width: min-content;
 }
+
+#search-results {
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  position: absolute;
+  background-color: white;
+  z-index: 1000;
+  width: 100%;
+}
+.search-result-item {
+  padding: 10px;
+  cursor: pointer;
+}
+.search-result-item:hover {
+  background-color: #f0f0f0;
+}
