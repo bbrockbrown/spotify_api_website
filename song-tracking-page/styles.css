@@ -121,6 +121,16 @@ body {
   --bs-list-group-color: white;
   --bs-list-group-border-width: 0px;
   --bs-list-group-border-radius: 0px;
+  --bs-list-group-item-padding-x: 0px;
+}
+
+.row > .list-group {
+  padding: 0;
+}
+
+.row > .carousel {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .track-search {
