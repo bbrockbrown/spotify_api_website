@@ -23,14 +23,22 @@ async function getTrackAudioFeatures(trackName) {
     console.log(audioFeatures);
 }
 
+function hideSearchResults() {
+    searchResults.style.display = 'none';
+}
+
 search.addEventListener('input', async () => {
     const query = search.value.trim();
+
     if (query.length > 0) {
         // Fetch the token
         const token = await APIController.getToken();
 
         // Search for tracks
         const tracks = await APIController.searchTrack(token, query);
+
+        // Keeping track of number of results
+        let trackNum = 1
 
         // Clear previous results
         searchResults.innerHTML = '';
@@ -39,14 +47,19 @@ search.addEventListener('input', async () => {
             tracks.forEach(track => {
                 const div = document.createElement('div');
                 div.className = 'search-result-item';
-                div.textContent = `${track.name} by ${track.artists.map(artist => artist.name).join(', ')}`;
+                div.textContent = `${trackNum}. "${track.name}" by ${track.artists.map(artist => artist.name).join(', ')}`;
                 div.dataset.trackId = track.id;
+                trackNum++;
+
+                // Does not add border to bottom of last search result for clean formatting
+                if (tracks.indexOf(track) === tracks.length - 1) {
+                    div.style.borderBottom = 'none';
+                }
 
                 // Optional: Handle click on the suggestion
                 div.addEventListener('click', () => {
                     search.value = track.name;
                     searchResults.style.display = 'none';
-                    console.log(`Selected track: ${track.name}, ID: ${track.id}`);
                     // Add additional logic if needed when a track is selected
                 });
 
@@ -63,5 +76,8 @@ search.addEventListener('input', async () => {
     }
 });
 
-// Example usage with the song "Born to Die"
-getTrackAudioFeatures('May It Be');
+document.addEventListener('click', (event) => {
+    if (!search.contains(event.target) && !searchResults.contains(event.target)) {
+        hideSearchResults();
+    }
+});
