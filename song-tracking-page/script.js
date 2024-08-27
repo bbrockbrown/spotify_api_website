@@ -4,29 +4,6 @@ import APIController from '../script.js';
 const search = document.querySelector("#search-bar");
 const searchResults = document.querySelector("#search-results");
 
-async function getTrackAudioFeatures(trackName) {
-    const token = await APIController.getToken();
-
-    // Search for the track by name to get ID/endpoint
-    const track = await APIController.searchTrack(token, trackName);
-
-    // Throw error if no ID/endpoint is found 
-    if (!track) {
-        console.error('Track not found');
-        return;
-    }
-
-    const trackId = track.id;
-
-    // Use track ID to get audio features
-    const audioFeatures = await APIController.getTrackAudioFeatures(token, trackId);
-    console.log(audioFeatures);
-}
-
-function hideSearchResults() {
-    searchResults.style.display = 'none';
-}
-
 search.addEventListener('input', async () => {
     const query = search.value.trim();
 
@@ -57,10 +34,12 @@ search.addEventListener('input', async () => {
                 }
 
                 // Optional: Handle click on the suggestion
-                div.addEventListener('click', () => {
+                div.addEventListener('click', async () => {
                     search.value = track.name;
-                    searchResults.style.display = 'none';
-                    // Add additional logic if needed when a track is selected
+                    hideSearchResults();
+
+                    // Use same token as above to obtain track's audio features (aka song 'reading')
+                    trackToGraph(track.id);
                 });
 
                 searchResults.appendChild(div);
@@ -76,8 +55,57 @@ search.addEventListener('input', async () => {
     }
 });
 
+
+async function trackToGraph(trackID) {
+    const token = await APIController.getToken();
+
+    // Throw error if no ID/endpoint is found 
+    if (!trackID) {
+        console.error('Track not found');
+        return;
+    }
+
+    // Use track ID to get audio features
+    const audioFeatures = await APIController.getTrackAudioFeatures(token, trackID);
+    console.log(audioFeatures);
+    generateGraph(audioFeatures);
+}
+
+
+function hideSearchResults() {
+    searchResults.style.display = 'none';
+}
+
+
 document.addEventListener('click', (event) => {
     if (!search.contains(event.target) && !searchResults.contains(event.target)) {
         hideSearchResults();
     }
 });
+
+// Function to send data and display the image
+function generateGraph(audioFeatures) {
+    fetch('/generate-graph', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(audioFeatures)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = URL.createObjectURL(blob);
+        const img = document.createElement('img');
+        img.src = url;
+        document.getElementById('graph-container').innerHTML = ''; // Clear previous graph
+        document.getElementById('graph-container').appendChild(img);
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
